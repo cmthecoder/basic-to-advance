@@ -1,19 +1,19 @@
+import { useState } from 'react';
 import './App.css';
-import ModeToggler from './components/ModeToggler';
-// import Btn from './components/Btn';
-// import Header from './components/Header';
-// import Main from './components/Main';
-// import Sidebar from './components/Sidebar';
+import Heading from './components/Heading';
+
 
 function App() {
+  const [word, setWord] = useState('Eat')
+
+  const handleClick = () => {
+    setWord('Drink')
+  }
+
   return (
     <div className="App">
-
-      {/* <Header name='Anna' color='purple' />
-      <Main greet='howdy'/>
-      <Sidebar greet='Hi' /> */}
-      {/* <Btn /> */}
-      <ModeToggler />
+      <Heading message={word + ' at Little Lemon'}/>
+      <button onClick={handleClick}>Click here</button>
     </div>
   );
 }
