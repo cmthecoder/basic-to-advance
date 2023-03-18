@@ -1,19 +1,36 @@
 import './App.css';
-import Counter from './components/Counter';
-import MealsList from './components/MealsList';
-import MealsProvider from './provider/MealsProvider';
-
-
+import { useState } from 'react';
 
 
 function App() {
 
-  return (
+  const [name , setName] = useState('')
+
+  const handleChange = (e) => {
+    setName(e.target.value)
+  }
+  
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('form submitted')
+  }
+
+return (
     <div className="App">
-      <MealsProvider>
-        <MealsList />
-        <Counter />
-      </MealsProvider>
+      <form onSubmit={handleSubmit}>
+        <fieldset>
+          <div className="Field">
+            <label>Name: </label>
+            <input
+              type="text"
+              placeholder='Name'
+              name='name'
+              value={name}
+              onChange={handleChange}/>
+          </div>
+          <button type='submit'>Submit</button>
+        </fieldset>
+      </form>
     </div>
   );
 }
