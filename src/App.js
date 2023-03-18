@@ -4,33 +4,53 @@ import { useState } from 'react';
 
 function App() {
 
-  const [name , setName] = useState('')
+  const [score , setScore] = useState('10')
+  const [comment, setComment] = useState('')
 
   const handleChange = (e) => {
-    setName(e.target.value)
+    setScore(e.target.value)
   }
-  
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    setName('')
-    console.log('form submitted')
+    if(Number(score) <5 && comment.length <= 10) {
+      alert('Please provide a comment explaining why the experience was poor.')
+      return
+    }
+
+    console.log('Form submitted')
+    setComment('')
+    setScore('10')
   }
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value)
+  }
+
 
 return (
     <div className="App">
       <form onSubmit={handleSubmit}>
         <fieldset>
+          <h2>Feedback form</h2>
           <div className="Field">
-            <label htmlFor='name'>Name: </label>
+            <label htmlFor="">Score: {score} ⭐️</label>
             <input
-              id='name'
-              type="text"
-              placeholder='Name'
-              name='name'
-              value={name}
-              onChange={handleChange}/>
+              type="range"
+              min='0'
+              max='10'
+              value={score}
+              onChange={handleChange}
+            />
           </div>
-          <button disabled={!name} type='submit'>Submit</button>
+          <div className='Field'>
+            <label htmlFor="comments">Comment:</label>
+            <textarea
+              value={comment}
+              onChange={handleCommentChange}
+            />
+          </div>
+          <button type='submit'>Submit</button>
         </fieldset>
       </form>
     </div>
