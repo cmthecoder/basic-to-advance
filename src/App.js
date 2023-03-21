@@ -1,22 +1,39 @@
 import './App.css';
-import { useState, useEffect, useReducer } from 'react';
 
-const reducer = (state, action) => {
-  if(action.type === 'celebrity_visit') return {money: state.money + 5000}
-  return state
+const Button = ({ type, children, ...buttonProps }) => {
+  const className = type === 'primary' ? 'PrimaryButton' : 'SecondaryButton'
+  return (
+    <button className={`Button ${className}`} {...buttonProps}>
+      {children}
+    </button>
+  )
+}
+
+const LoginButton = ({ type, children, ...buttonProps }) => {
+  return (
+    <Button
+      type='secondary'
+      {...buttonProps}
+      onClick={() => {
+        alert('Loggin in!')
+      }}
+    >
+      {children}
+    </Button>
+  )
 }
 
 function App() {
 
-  const intialState = {money: 100}
-  const [state, dispatch] = useReducer(reducer, intialState)
-
 return (
     <div className="App">
-      <h1>Wallet: {state.money}</h1>
-      <div>
-        <button onClick={() => dispatch({type: 'celebrity_visit'})}>Celebrity Visit</button>
-      </div>
+      <header className='Header'>Little Lemon Restaurant</header>
+      <Button type='primary' onClick={() => alert('Signing up!')}>
+        Sign up
+      </Button>
+      <LoginButton type='secondary' onClick={() => alert('Signing up!')}>
+        Login
+      </LoginButton>
     </div>
   );
 }
