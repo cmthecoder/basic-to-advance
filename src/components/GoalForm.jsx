@@ -15,12 +15,7 @@ const GoalForm = (props) => {
   }
   return (
     <>
-      <h1>My Little Lemon Goals</h1>
-      <form onSubmit={submitHandler}>
-        <input type="text" name='goal' placeholder='Goal' value={formData.goal} onChange={changeHandler} />
-        <input type="text" name='by' placeholder='By...' value={formData.by} onChange={changeHandler} />
-        <button type='submit'>Submit Goal</button>
-      </form>
+      
     </>
   )
 }
