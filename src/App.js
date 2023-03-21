@@ -1,24 +1,22 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
+
+const reducer = (state, action) => {
+  if(action.type === 'celebrity_visit') return {money: state.money + 5000}
+  return state
+}
 
 function App() {
-  const [toggle, setToggle] = useState(false)
 
-  const clickHandler = () => {
-    setToggle(!toggle)
-  }
-
-  useEffect(() => {
-    document.title = toggle ? 'Welocome to little lemon' : 'Using useEffect Hook'
-  }, [toggle])
+  const intialState = {money: 100}
+  const [state, dispatch] = useReducer(reducer, intialState)
 
 return (
     <div className="App">
-      <h1>Using the useEffect hook</h1>
-      <button onClick={clickHandler}>
-        Toggle message
-      </button>
-      {toggle && <h2>Welcome to Little Lemon</h2>}
+      <h1>Wallet: {state.money}</h1>
+      <div>
+        <button onClick={() => dispatch({type: 'celebrity_visit'})}>Celebrity Visit</button>
+      </div>
     </div>
   );
 }
